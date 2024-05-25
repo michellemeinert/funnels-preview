@@ -1,16 +1,5 @@
+import { ListItemProps, ListProps } from "@/app/types";
 import Img from "./Img";
-
-type ListItemProps = {
-  id: string;
-  title: string;
-  description?: string;
-  src?: string;
-};
-
-type ListProps = {
-  id: string;
-  items: ListItemProps[];
-};
 
 const ListItem = ({ src, title, description, id }: ListItemProps) => {
   return (
@@ -21,7 +10,10 @@ const ListItem = ({ src, title, description, id }: ListItemProps) => {
         <Img
           src={src}
           alt={title}
-          width={50}/>
+          width={50}
+          height={50}
+          type="image"
+        />
       )}
     </li>
   );

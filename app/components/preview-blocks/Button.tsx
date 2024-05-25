@@ -1,10 +1,4 @@
-type ButtonProps = {
-  id: string;
-  text: string;
-  color?: string;
-  bgColor?: string;
-};
-
+import { ButtonProps } from "@/app/types";
 
 const Button = ({ id, text, color, bgColor }: ButtonProps) => {
   return (

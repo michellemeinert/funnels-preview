@@ -1,9 +1,4 @@
-type TextProps = {
-  id: string;
-  text: string;
-  color?: string;
-  align?: 'center' | 'left' | 'right';
-};
+import { TextProps } from "@/app/types";
 
 const Text = ({ id, text, color, align }: TextProps) => {
   return (
