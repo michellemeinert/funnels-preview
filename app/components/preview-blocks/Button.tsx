@@ -1,4 +1,4 @@
-export type ButtonProps = {
+type ButtonProps = {
   id: string;
   text: string;
   color?: string;

@@ -1,4 +1,4 @@
-export type TextProps = {
+type TextProps = {
   id: string;
   text: string;
   color?: string;

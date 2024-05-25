@@ -1,5 +1,6 @@
 import Image from "next/image";
-export type ImgProps = {
+
+type ImgProps = {
   id?: string;
   src: string;
   alt: string;
