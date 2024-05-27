@@ -28,7 +28,9 @@ const Preview = ({ file }: FileProps) => {
     let storagePage
     // Get the current funnel page from local storage if it exists
     storagePage = localStorage.getItem("currentFunnelPage") || 0
-    setCurrentPage(+storagePage)
+    if (storagePage) {
+      setCurrentPage(+storagePage)
+    }
   }, [])
 
   const handlePreviousPage = () => {
