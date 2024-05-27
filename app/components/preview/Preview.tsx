@@ -1,8 +1,8 @@
 import { BlockProps, FileProps } from "@/app/types";
-import Button from "./Button";
-import Img from "./Img";
-import List from "./List";
-import Text from "./Text";
+import Button from "./blocks/Button";
+import Img from "./blocks/Img";
+import List from "./blocks/List";
+import Text from "./blocks/Text";
 import { useState } from "react";
 
 

@@ -3,9 +3,7 @@ import Img from "./Img";
 
 const ListItem = ({ src, title, description, id }: ListItemProps) => {
   return (
-    <li id={id} className="flex flex-col py-2 px-4 border rounded-lg m-2">
-      <h3 className="text-primary">{title}</h3>
-      <p className="text-primary">{description}</p>
+    <li id={id} className="flex py-2 px-4 border rounded-lg m-2">
       {src && (
         <Img
           src={src}
@@ -15,6 +13,10 @@ const ListItem = ({ src, title, description, id }: ListItemProps) => {
           type="image"
         />
       )}
+      <div className="ml-1">
+        <h3 className="text-primary">{title}</h3>
+        <p className="text-primary">{description}</p>
+      </div>
     </li>
   );
 }
