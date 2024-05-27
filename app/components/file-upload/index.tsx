@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent, DragEvent } from 'react';
+import React, { useState, ChangeEvent, DragEvent, useRef } from 'react';
 
 type FileUploadProps = {
   onFileDrop: (json: any) => void;
@@ -6,23 +6,24 @@ type FileUploadProps = {
 
 //TODO: validate json file for funnel type
 const FileUpload = ({ onFileDrop }: FileUploadProps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [_isDragging, setIsDragging] = useState(false);
 
-  const handleDragEnter = useCallback((event: DragEvent<HTMLDivElement>) => {
+  const handleDragEnter = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setIsDragging(true);
-  }, []);
+  };
 
-  const handleDragLeave = useCallback((event: DragEvent<HTMLDivElement>) => {
+  const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setIsDragging(false);
-  }, []);
+  };
 
-  const handleDragOver = useCallback((event: DragEvent<HTMLDivElement>) => {
+  const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-  }, []);
+  };
 
-  const handleDrop = useCallback((event: DragEvent<HTMLDivElement>) => {
+  const handleDrop = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setIsDragging(false);
 
@@ -45,7 +46,7 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
       }
     };
     reader.readAsText(file);
-  }, [onFileDrop]);
+  };
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -67,16 +68,17 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center p-6 border rounded-lg w-full"
+      className="flex flex-col items-center justify-center p-6 border rounded-lg w-full transition-all hover:scale-110 cursor-pointer"
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
+      onClick={() => inputRef.current?.click()}
     >
-      <p>Drag & drop your JSON file here, or</p>
+      <p className="text-primary">Drag & drop your JSON file here, or</p>
       <label className="cursor-pointer mt-2">
-        <span className="text-blue-500 hover:underline">click to upload</span>
-        <input type="file" className="hidden" onChange={handleFileChange} accept=".json" />
+        <span className="text-accent hover:underline">click to upload</span>
+        <input ref={inputRef} type="file" className="hidden" onChange={handleFileChange} accept=".json" />
       </label>
     </div>
   );

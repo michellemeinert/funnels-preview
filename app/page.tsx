@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import Button from "./components/preview-blocks/Button";
 import Img from "./components/preview-blocks/Img";
 import Text from "./components/preview-blocks/Text";
@@ -14,8 +14,8 @@ export default function Home() {
     setFile(json)
   };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {!file ? <FileUpload onFileDrop={handleFileDrop} />: <Preview file={file}/>}
+    <main className="bg-background flex min-h-screen flex-col items-center justify-between p-24">
+      {!file ? <FileUpload onFileDrop={handleFileDrop} /> : <Preview file={file} />}
     </main>
   );
 }

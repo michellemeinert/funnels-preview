@@ -5,7 +5,7 @@ const Button = ({ id, text, color, bgColor }: ButtonProps) => {
     <button
       id={id}
       style={{ backgroundColor: bgColor, color: color }}
-      className="text-white py-1.5 px-4 rounded-lg bg-blue-500 hover:bg-blue-600"
+      className="text-background py-1.5 px-4 rounded-lg bg-accent hover:bg-accent-hover"
     >
       {text}
     </button>

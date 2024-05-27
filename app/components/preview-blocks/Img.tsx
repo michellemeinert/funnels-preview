@@ -1,7 +1,7 @@
 import { ImgProps } from "@/app/types";
 import Image from "next/image";
 
-export const Img = ({ id, src, alt, width = 100, height = 100 }: ImgProps) => {
+export const Img = ({ id, src, alt, width = 300, height = 300 }: ImgProps) => {
   return <Image
     id={id}
     src={src}

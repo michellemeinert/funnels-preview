@@ -4,8 +4,8 @@ import Img from "./Img";
 const ListItem = ({ src, title, description, id }: ListItemProps) => {
   return (
     <li id={id} className="flex flex-col py-2 px-4 border rounded-lg m-2">
-      <h3 className="">{title}</h3>
-      <p className="">{description}</p>
+      <h3 className="text-primary">{title}</h3>
+      <p className="text-primary">{description}</p>
       {src && (
         <Img
           src={src}
