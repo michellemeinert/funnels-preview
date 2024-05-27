@@ -3,12 +3,13 @@ import FileUpload from "./components/file-upload";
 import { useEffect, useState } from "react";
 import Preview from "./components/preview/Preview";
 import Header from "./components/header";
+import { FunnelProps } from "./types";
 
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false)
-  const [file, setFile] = useState()
-  const handleFileDrop = (json: any) => {
+  const [file, setFile] = useState<FunnelProps | null>()
+  const handleFileDrop = (json: FunnelProps) => {
     localStorage.setItem("funnelFile", JSON.stringify(json))
     setFile(json)
   };

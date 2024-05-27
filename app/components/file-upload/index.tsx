@@ -1,22 +1,18 @@
-import React, { useState, ChangeEvent, DragEvent, useRef } from 'react';
+import { FileUploadProps, FunnelProps } from '@/app/types';
+import React, { useState, ChangeEvent, DragEvent, useRef, useEffect } from 'react';
 
-type FileUploadProps = {
-  onFileDrop: (json: any) => void;
-}
 
-//TODO: validate json file for funnel type
 const FileUpload = ({ onFileDrop }: FileUploadProps) => {
+  const [error, setError] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [_isDragging, setIsDragging] = useState(false);
+
 
   const handleDragEnter = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    setIsDragging(true);
   };
 
   const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    setIsDragging(false);
   };
 
   const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -25,24 +21,29 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
 
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    setIsDragging(false);
 
     const files = event.dataTransfer.files;
     if (files.length === 0) return;
 
     const file = files[0];
     if (file.type !== 'application/json') {
-      alert('Only JSON files are allowed.');
+      setError('Only JSON files are allowed.');
       return;
     }
 
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
-        const json = JSON.parse(e.target?.result as string);
-        onFileDrop(json);
+        const json: FunnelProps = JSON.parse(e.target?.result as string);
+        //fix this validation
+        if (Array.isArray(json.pages)) {
+          setError(null)
+          onFileDrop(json);
+        } else {
+          setError('Sorry this file doesn`t conform to the funnel schema :(');
+        }
       } catch (error) {
-        alert('Invalid JSON file.');
+        setError('Invalid JSON file.');
       }
     };
     reader.readAsText(file);
@@ -54,33 +55,44 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
-          const json = JSON.parse(e.target?.result as string);
-          onFileDrop(json);
+          const json: FunnelProps = JSON.parse(e.target?.result as string);
+          //fix this validation
+          if (Array.isArray(json.pages)) {
+            setError(null)
+            onFileDrop(json);
+          } else {
+            setError('Sorry this file doesn`t conform to the funnel schema :(');
+          }
         } catch (error) {
-          alert('Invalid JSON file.');
+          setError('Invalid JSON file.');
         }
       };
       reader.readAsText(file);
     } else {
-      alert('Only JSON files are allowed.');
+      setError('Only JSON files are allowed.');
     }
   };
 
+  console.log(error)
   return (
-    <div
-      className="flex flex-col items-center justify-center p-6 border rounded-lg w-full transition-all hover:scale-110 cursor-pointer"
-      onDragEnter={handleDragEnter}
-      onDragLeave={handleDragLeave}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      onClick={() => inputRef.current?.click()}
-    >
-      <p className="text-primary">Drag & drop your JSON file here, or</p>
-      <label className="cursor-pointer mt-2">
-        <span className="text-accent hover:underline">click to upload</span>
-        <input ref={inputRef} type="file" className="hidden" onChange={handleFileChange} accept=".json" />
-      </label>
-    </div>
+    <>
+      <div
+        // fix the error border
+        className={`flex flex-col items-center justify-center p-6 ${error ? 'border-rose-500' : 'border'} rounded-lg w-full transition-all hover:scale-110 cursor-pointer`}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        onClick={() => inputRef.current?.click()}
+      >
+        <p className="text-primary">Drag & drop your JSON file here, or</p>
+        <label className="cursor-pointer mt-2">
+          <span className="text-accent hover:underline">click to upload</span>
+          <input ref={inputRef} type="file" className="hidden" onChange={handleFileChange} accept=".json" />
+        </label>
+      </div>
+      {error && <p className='text-error text-bold text-md mt-2'>{error}</p>}
+    </>
   );
 };
 

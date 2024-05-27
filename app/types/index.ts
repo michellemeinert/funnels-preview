@@ -52,3 +52,14 @@ export type FileProps = {
 		pages: PageProps[]
 	}
 }
+
+export type FunnelProps = {
+	name: string;
+	bgColor: string;
+	pages: PageProps[]
+
+}
+
+export type FileUploadProps = {
+	onFileDrop: (json: FunnelProps) => void;
+}

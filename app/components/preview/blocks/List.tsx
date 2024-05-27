@@ -1,16 +1,15 @@
 import { ListItemProps, ListProps } from "@/app/types";
-import Img from "./Img";
+import Image from "next/image";
 
 const ListItem = ({ src, title, description, id }: ListItemProps) => {
   return (
     <li id={id} className="flex py-2 px-4 border rounded-lg m-2">
       {src && (
-        <Img
+        <Image
           src={src}
           alt={title}
           width={50}
           height={50}
-          type="image"
         />
       )}
       <div className="ml-1">
