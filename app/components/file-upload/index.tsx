@@ -12,7 +12,7 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
   };
 
   const handleFile = (file: File) => {
-    if (file && file.type === 'application/json') {
+    if (file.type === 'application/json') {
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
@@ -48,8 +48,8 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
   return (
     <>
       <div
-        // fix the error border
-        className={`flex flex-col items-center justify-center p-6 ${error ? 'border-rose-500' : 'border'} rounded-lg w-full transition-all hover:scale-110 cursor-pointer`}
+        //area labels for accessability
+        className={`flex flex-col items-center justify-center p-6 ${error ? 'border border-error' : 'border'} rounded-lg w-full transition-all hover:scale-110 cursor-pointer`}
         onDragEnter={handlePreventDefault}
         onDragLeave={handlePreventDefault}
         onDragOver={handlePreventDefault}

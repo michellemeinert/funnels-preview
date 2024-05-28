@@ -67,3 +67,7 @@ export type FileUploadProps = {
 export type SidebarProps = FileProps & {
 	currentFunnelPage: number;
 }
+
+export type HeaderProps = {
+	hasFile: boolean;
+}

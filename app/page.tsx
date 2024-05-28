@@ -15,18 +15,22 @@ const Home = () => {
   };
 
   useEffect(() => {
-    let storageFile
     // Get the file from local storage if it exists
-    storageFile = localStorage.getItem("funnelFile") || ""
+    const storageFile = localStorage.getItem("funnelFile")
     if (storageFile) {
-      setFile(JSON.parse(storageFile))
+      try {
+        const parsedFile = JSON.parse(storageFile)
+        setFile(parsedFile)
+      } catch (error) {
+        console.error('Error while parsing JSON file', error)
+      }
     }
     setLoaded(true)
   }, [])
 
   return (
     <main className="bg-background min-h-screen">
-      <Header />
+      <Header hasFile={!!file} />
       {loaded && <div className="flex flex-col items-center p-24">
         {!file ? <FileUpload onFileDrop={handleFileDrop} /> : <Preview file={file} />}
       </div>}
