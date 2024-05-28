@@ -14,8 +14,10 @@ const Block = ({ block }: BlockProps) => {
       return <Button {...block} />;
     case "list":
       return <List {...block} />;
-    default:
+    case "text":
       return <Text {...block} />;
+    default:
+      return null;
   }
 }
 

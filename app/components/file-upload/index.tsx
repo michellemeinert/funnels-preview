@@ -1,5 +1,5 @@
 import { FileUploadProps, FunnelProps } from '@/app/types';
-import React, { useState, ChangeEvent, DragEvent, useRef, useEffect } from 'react';
+import React, { useState, ChangeEvent, DragEvent, useRef } from 'react';
 
 
 const FileUpload = ({ onFileDrop }: FileUploadProps) => {
@@ -7,50 +7,11 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
 
-  const handleDragEnter = (event: DragEvent<HTMLDivElement>) => {
+  const handlePreventDefault = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   };
 
-  const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  };
-
-  const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  };
-
-  const handleDrop = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-
-    const files = event.dataTransfer.files;
-    if (files.length === 0) return;
-
-    const file = files[0];
-    if (file.type !== 'application/json') {
-      setError('Only JSON files are allowed.');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const json: FunnelProps = JSON.parse(e.target?.result as string);
-        //fix this validation
-        if (Array.isArray(json.pages)) {
-          setError(null)
-          onFileDrop(json);
-        } else {
-          setError('Sorry this file doesn`t conform to the funnel schema :(');
-        }
-      } catch (error) {
-        setError('Invalid JSON file.');
-      }
-    };
-    reader.readAsText(file);
-  };
-
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleFile = (file: File) => {
     if (file && file.type === 'application/json') {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -71,17 +32,27 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
     } else {
       setError('Only JSON files are allowed.');
     }
-  };
+  }
 
-  console.log(error)
+  const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files?.[0];
+    handleFile(file)
+  }
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    file && handleFile(file)
+  }
+
   return (
     <>
       <div
         // fix the error border
         className={`flex flex-col items-center justify-center p-6 ${error ? 'border-rose-500' : 'border'} rounded-lg w-full transition-all hover:scale-110 cursor-pointer`}
-        onDragEnter={handleDragEnter}
-        onDragLeave={handleDragLeave}
-        onDragOver={handleDragOver}
+        onDragEnter={handlePreventDefault}
+        onDragLeave={handlePreventDefault}
+        onDragOver={handlePreventDefault}
         onDrop={handleDrop}
         onClick={() => inputRef.current?.click()}
       >
