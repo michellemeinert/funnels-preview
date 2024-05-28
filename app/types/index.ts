@@ -70,4 +70,5 @@ export type SidebarProps = FileProps & {
 
 export type HeaderProps = {
 	hasFile: boolean;
+	onButtonClick: () => void;
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { HeaderProps } from "@/app/types";
 
 
-const Header = ({ hasFile }: HeaderProps) => {
+const Header = ({ hasFile, onButtonClick }: HeaderProps) => {
 
   return (
     <header className="md:flex-row flex-col bg-background flex justify-between items-center px-6 py-4 fixed w-full z-10 shadow-md">
@@ -20,6 +20,7 @@ const Header = ({ hasFile }: HeaderProps) => {
         <h2 className="ml-4 text-primary text-xl font-semibold">Perspective</h2>
       </div>
       {hasFile && <button
+        onClick={() => onButtonClick()}
         className="md:mt-0 mt-2 text-background py-1.5 px-4 rounded-lg bg-accent hover:bg-accent-hover"
       >
         Upload Another Funnel
