@@ -17,7 +17,6 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
       reader.onload = (e) => {
         try {
           const json: FunnelProps = JSON.parse(e.target?.result as string);
-          //fix this validation
           if (Array.isArray(json.pages)) {
             setError(null)
             onFileDrop(json);
@@ -57,10 +56,8 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
         onClick={() => inputRef.current?.click()}
       >
         <p className="text-primary">Drag & drop your JSON file here, or</p>
-        <label className="cursor-pointer mt-2">
-          <span className="text-accent hover:underline">click to upload</span>
-          <input ref={inputRef} type="file" className="hidden" onChange={handleFileChange} accept=".json" />
-        </label>
+        <p className="text-accent hover:underline mt-2">click to upload</p>
+        <input ref={inputRef} type="file" className="hidden" onChange={handleFileChange} accept=".json" />
       </div>
       {error && <p className='text-error text-bold text-md mt-2'>{error}</p>}
     </>

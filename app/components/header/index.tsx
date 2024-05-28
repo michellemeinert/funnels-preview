@@ -5,7 +5,6 @@ import { HeaderProps } from "@/app/types";
 
 
 const Header = ({ hasFile, onButtonClick }: HeaderProps) => {
-
   return (
     <header className="md:flex-row flex-col bg-background flex justify-between items-center px-6 py-4 fixed w-full z-10 shadow-md">
       <div className="flex items-center">
