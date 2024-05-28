@@ -17,6 +17,7 @@ const Home = () => {
 
   const handleRemoveFile = () => {
     localStorage.setItem("funnelFile", JSON.stringify(''))
+    localStorage.setItem("currentFunnelPage", JSON.stringify(0))
     setFile(null)
   }
 
