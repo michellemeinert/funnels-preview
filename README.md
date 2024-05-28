@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Funnel Previewer
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Funnel Previewer is a web application designed to provide users with a mobile preview of their funnel JSON files. It allows users to select a funnel JSON file from their computer and generate a visual representation of the funnel as it would appear on a mobile viewport (e.g., 375x600px). Users can navigate between different pages of the funnel, although the preview itself is non-interactive. Additionally, users can upload a new funnel JSON file without reloading the page.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Upload a funnel JSON file from your computer.
+- Generate a mobile preview of the funnel with a viewport of 375x600px.
+- Navigate between different funnel pages.
+- Upload a new funnel JSON file without reloading the page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+1. Clone the repository:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/yourusername/funnel-previewer.git
+   cd funnel-previewer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  ```bash
+  npm install
 
-## Deploy on Vercel
+3. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  ```bash
+  npm start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+4. Open your browser and navigate to http://localhost:3000.  
