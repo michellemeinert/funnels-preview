@@ -72,3 +72,11 @@ export type HeaderProps = {
 	hasFile: boolean;
 	onButtonClick: () => void;
 }
+
+export const isPage = (value: any): value is PageProps =>
+	typeof value.id === 'string' &&
+	Array.isArray(value.blocks)
+
+export const isFunnel = (value: any): value is FunnelProps =>
+	Array.isArray(value.pages) &&
+	value.pages.every(isPage);

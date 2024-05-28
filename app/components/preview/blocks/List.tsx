@@ -23,7 +23,7 @@ const ListItem = ({ src, title, description, id }: ListItemProps) => {
 const List = ({ id, items }: ListProps) => {
   return (
     <ul className="flex flex-col">
-      {items.map((item, i) => (
+      {items && items.map((item, i) => (
         <ListItem key={`${id}-item-${i}`} {...item} />
       ))}
     </ul>

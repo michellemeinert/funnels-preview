@@ -2,7 +2,7 @@ import { SidebarProps } from "@/app/types"
 
 const Sidebar = ({ file, currentFunnelPage }: SidebarProps) => {
   return (
-    <div className="md:block hidden bg-background flex flex-col px-6 py-4 fixed left-0 top-20 shadow-md h-full">
+    <div className="md:block hidden bg-background flex flex-col px-6 py-4 fixed left-0 top-20 shadow-md h-full overlow-scroll">
       <p>
         Funnel name: {file.name}
       </p>

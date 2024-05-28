@@ -46,7 +46,7 @@ const Preview = ({ file }: FileProps) => {
   return (
     <>
       <Sidebar file={file} currentFunnelPage={currentPage} />
-      <div className="md:mt-0 mt-10 flex flex-col p-10 items-center py-2 px-4 border rounded-lg w-[375px] h-[600px] overflow-scroll">
+      <div style={{ backgroundColor: file.bgColor }} className="md:mt-0 mt-10 flex flex-col p-10 items-center py-2 px-4 border rounded-lg w-[375px] h-[600px] overflow-scroll">
         {!!file.pages && file.pages[currentPage].blocks.map((block: any) => <div key={block.id} className="my-2"><Block block={block} /></div>)}
       </div>
       <div className="flex mt-2">

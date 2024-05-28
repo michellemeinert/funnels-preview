@@ -1,4 +1,4 @@
-import { FileUploadProps, FunnelProps } from '@/app/types';
+import { FileUploadProps, isFunnel } from '@/app/types';
 import React, { useState, ChangeEvent, DragEvent, useRef } from 'react';
 
 
@@ -16,8 +16,8 @@ const FileUpload = ({ onFileDrop }: FileUploadProps) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
-          const json: FunnelProps = JSON.parse(e.target?.result as string);
-          if (Array.isArray(json.pages)) {
+          const json = JSON.parse(e.target?.result as string);
+          if (isFunnel(json)) {
             setError(null)
             onFileDrop(json);
           } else {
