@@ -1,3 +1,4 @@
+
 # Funnel Previewer
 
 ## Overview
@@ -15,20 +16,19 @@ Funnel Previewer is a web application designed to provide users with a mobile pr
 ## Installation
 
 1. Clone the repository:
-
    ```bash
-   git clone https://github.com/yourusername/funnel-previewer.git
-   cd funnel-previewer
+   git clone https://github.com/michellemeinert/funnels-preview
+   cd funnels-preview
+
 
 2. Install dependencies:
+    ```bash
+    npm install
 
-  ```bash
-  npm install
 
 3. Start the development server:
+    ```bash
+    npm start
 
-  ```bash
-  npm start
 
-
-4. Open your browser and navigate to http://localhost:3000.  
+4. Open your browser and navigate to http://localhost:3000. 
