@@ -20,15 +20,12 @@ Funnel Previewer is a web application designed to provide users with a mobile pr
    git clone https://github.com/michellemeinert/funnels-preview
    cd funnels-preview
 
-
 2. Install dependencies:
     ```bash
     npm install
 
-
 3. Start the development server:
     ```bash
     npm start
-
 
 4. Open your browser and navigate to http://localhost:3000. 

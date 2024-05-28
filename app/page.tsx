@@ -6,7 +6,7 @@ import Header from "./components/header";
 import { FunnelProps } from "./types";
 
 
-export default function Home() {
+const Home = () => {
   const [loaded, setLoaded] = useState(false)
   const [file, setFile] = useState<FunnelProps | null>()
   const handleFileDrop = (json: FunnelProps) => {
@@ -33,3 +33,4 @@ export default function Home() {
     </main>
   );
 }
+export default Home;
