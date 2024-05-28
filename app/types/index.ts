@@ -63,3 +63,7 @@ export type FunnelProps = {
 export type FileUploadProps = {
 	onFileDrop: (json: FunnelProps) => void;
 }
+
+export type SidebarProps = FileProps & {
+	currentFunnelPage: number;
+}

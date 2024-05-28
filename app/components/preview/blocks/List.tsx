@@ -7,7 +7,7 @@ const ListItem = ({ src, title, description, id }: ListItemProps) => {
       {src && (
         <Image
           src={src}
-          alt={title}
+          alt={title ?? "an image"}
           width={50}
           height={50}
         />
